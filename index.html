@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script>
+                    const myFunction = async () => {
+                    console.log(document.getElementById("Birthday").value);
+                    var str = document.getElementById("Birthday").value;
+                    // var date_arr = str.split("-");
+                    // console.log(date_arr);
+                    var url_str = "http://localhost:5000/?yyyy-mm-dd="+str;
+                    const response = await fetch(url_str);
+                    const myJson = await response.json();
+                    console.log(myJson);
+                    document.getElementById("demo").innerHTML = myJson.age_message;
+                    
+                     }
+
+                    const userAction = async () => {
+                    const response = await fetch('http://localhost:5000/?yyyy-mm-dd=1993-11-29');
+                    const myJson = await response.json();
+                    console.log(myJson);
+                    document.getElementById("demo").innerHTML = myJson.age_message;
+                    }
+                    </script>
+    </head>
+<body>
+
+<form action="/action_page.php">
+  Birthday:
+  <input type="date" name="bday" id="Birthday">
+  <p id="demo"></p>
+  <button type="button" onclick="myFunction()">Calculate  your age</button>
+  <button type="button" onclick="userAction()">Calculate  Akshath Age</button>
+</form>
+
+</body>
+</html>
